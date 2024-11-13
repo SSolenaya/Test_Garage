@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace TestGarage
@@ -51,9 +50,6 @@ namespace TestGarage
             {
                 _levelController.EndLevel().Forget();
             }
-           
-
         }
     }
 }
-

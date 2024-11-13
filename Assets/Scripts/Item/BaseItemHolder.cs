@@ -13,6 +13,7 @@ namespace TestGarage
 
     public class BaseItemHolder : MonoBehaviour
     {
+        private const float DISTANCE_FROM_CAMERA = 3f;
         private const float TIME_MOVE_IDLE = 0.5f;
         private const float TIME_MOVE_PICKED = 0.3f;
         
@@ -31,7 +32,6 @@ namespace TestGarage
         private Vector3 _startAngle;
         private Vector3 _startPosition;
         private Vector3 _currentDragPosition;
-        private Vector3 _pickedPosition = new Vector3(-0.47299999f, -0.419999987f, -1.20500004f);
         private Vector3 _finalPosition;
 
         private bool _isAboveCart;
@@ -42,7 +42,8 @@ namespace TestGarage
             _rigidbody = GetComponent<Rigidbody>();
         }
 
-        public void Setup(ItemView itemView, Camera camera, LayerMask layerMask, Action<BaseItemHolder> onStateChange, LevelController levelController)
+        public void Setup(ItemView itemView, Camera camera, LayerMask layerMask, 
+            Action<BaseItemHolder> onStateChange, LevelController levelController)
         {
             _itemView = itemView;
             _camera = camera;
@@ -77,6 +78,7 @@ namespace TestGarage
             }
 
             _itemView.SetLayer(false);
+
             switch (newItemState)
             {
                 case ItemState.none:
@@ -93,7 +95,8 @@ namespace TestGarage
                 case ItemState.picked:
 
                     Vector3 pos = _finalPosition;
-                    pos.y = _pickedPosition.y;
+                    pos.y = _levelController.PointAbovePickup.position.y;
+
                     _moveItem.MoveTo(pos, TIME_MOVE_PICKED, () =>
                     {
                         _rigidbody.isKinematic = false;
@@ -113,6 +116,7 @@ namespace TestGarage
             {
                 return;
             }
+
             SetState(ItemState.drag);
         }
 
@@ -134,6 +138,7 @@ namespace TestGarage
             {
                 return;
             }
+
             if (_isAboveCart)
             {
                 SetState(ItemState.picked);
@@ -146,7 +151,7 @@ namespace TestGarage
         private Vector3 GetWorldPosition(Vector3 position)
         {
             Vector3 v3Pos = position;
-            v3Pos.z = 3; //TODO move to SO
+            v3Pos.z = DISTANCE_FROM_CAMERA;
             return _camera.ScreenToWorldPoint(v3Pos);
         }
 
@@ -179,5 +184,3 @@ namespace TestGarage
         }
     }
 }
-
-

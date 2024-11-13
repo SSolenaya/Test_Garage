@@ -19,9 +19,12 @@ namespace TestGarage
         [Inject] private CameraController _cameraController;
         [Inject] private UIController _uiController;
 
-        [SerializeField] private float _startDelay = 1f;
-        [SerializeField] private float _endGameDelay = 4f;
-        [SerializeField] private float _timeMoveCamera = 2f;
+        [SerializeField] private readonly float _startDelay = 1f;
+        [SerializeField] private readonly float _endGameDelay = 4f;
+        [SerializeField] private readonly float _timeMoveCamera = 2f;
+
+        [SerializeField] private Transform _pointAbovePickup;
+        public Transform PointAbovePickup => _pointAbovePickup;
 
         [SerializeField] private Transform _cameraInside;
         [SerializeField] private Transform _cameraOutside;
@@ -32,8 +35,8 @@ namespace TestGarage
         [SerializeField] private List<Shelf> _listShelf;
         public List<Shelf> ListShelf => _listShelf;
 
-        private LevelState _currentLevelState; 
-        public LevelState CurrentLevelState => _currentLevelState;
+        public LevelState CurrentLevelState { get; private set; }
+
 
         public void Awake()
         {
@@ -75,7 +78,7 @@ namespace TestGarage
                 return;
             }
 
-            _currentLevelState = newLevelState;
+            CurrentLevelState = newLevelState;
         }
     }
 }

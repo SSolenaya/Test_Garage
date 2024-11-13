@@ -6,10 +6,11 @@ namespace TestGarage
 {
     public class MoveItem
     {
+        private readonly Transform _transform;
+
         private Tween _moveTween;
         private Tween _rotateTween;
 
-        private readonly Transform _transform;
 
         public MoveItem(Transform transform)
         {

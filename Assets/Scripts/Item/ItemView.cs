@@ -6,17 +6,12 @@ namespace TestGarage
 {
     public class ItemView : MonoBehaviour, IPointerDownHandler, IDragHandler, IPointerUpHandler
     {
+        private const int LAYER_ITEM_MOVE = 6;
+
         public event Action<Vector3> ActionOnPointerDown;
         public event Action<Vector3> ActionOnDrag;
         public event Action<Vector3> ActionOnPointerUp;
-
-        private Camera _camera;
-
-        public void Setup(Camera camera)
-        {
-            _camera = camera;
-        }
-
+        
         public void OnPointerDown(PointerEventData eventData)
         {
             ActionOnPointerDown?.Invoke(eventData.position);
@@ -34,7 +29,7 @@ namespace TestGarage
 
         public void SetLayer(bool isItemMoving)
         {
-            int layerNumber = isItemMoving ? 6 : 0;
+            int layerNumber = isItemMoving ? LAYER_ITEM_MOVE : 0;
             gameObject.layer = layerNumber;
         }
 

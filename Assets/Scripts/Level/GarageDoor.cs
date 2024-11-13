@@ -7,16 +7,17 @@ namespace TestGarage
 {
     public class GarageDoor : MonoBehaviour
     {
-        [SerializeField] public float timeOpenDoor;
-        [SerializeField] public Vector3 finalPosition;
-        [SerializeField] public Vector3 finalScale;
+        [SerializeField] private float _timeOpenDoor;
+        [SerializeField] private Vector3 _finalPosition;
+        [SerializeField] private Vector3 _finalScale;
+
 
         public async UniTask OpenDoor()
         {
-            transform.DOLocalMove(finalPosition, timeOpenDoor).SetEase(Ease.Linear);
-            transform.DOScale(finalScale, timeOpenDoor).SetEase(Ease.Linear);
+            transform.DOLocalMove(_finalPosition, _timeOpenDoor).SetEase(Ease.Linear);
+            transform.DOScale(_finalScale, _timeOpenDoor).SetEase(Ease.Linear);
 
-            await UniTask.Delay(TimeSpan.FromSeconds(timeOpenDoor));
+            await UniTask.Delay(TimeSpan.FromSeconds(_timeOpenDoor));
         }
     }
 }
