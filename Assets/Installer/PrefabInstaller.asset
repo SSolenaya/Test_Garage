@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2682539126e48a34fa4145d5ae3ac183, type: 3}
+  m_Name: PrefabInstaller
+  m_EditorClassIdentifier: 
+  _levelController: {fileID: 3113055142120784035, guid: d9484da4af5083740a188662661320ff, type: 3}
+  _cameraController: {fileID: 4196467269815981127, guid: 62ef87c9df895794484c00a1d7a54787, type: 3}
+  _itemsController: {fileID: 2437564452911403481, guid: ea231fc36b7287d40916e05b178e691a, type: 3}
+  _uiController: {fileID: 7248465327898372449, guid: 5e67bdcdb3f9f6e4b9254f23c9544e3c, type: 3}
